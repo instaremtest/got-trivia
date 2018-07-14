@@ -50,7 +50,7 @@ module.exports = function (app) {
                 return res.status(401).send();
             });
         }, (err) => {
-            return res.status(500).send();
+            return res.status(401).send();
         }).catch((err) => {
             return res.status(500).send();
         })

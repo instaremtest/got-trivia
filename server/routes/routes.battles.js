@@ -20,7 +20,7 @@ module.exports = function (app) {
     });
 
     //battles/count GET 
-    app.get("/battles/count", authenticate, (req, res) => {
+    app.get(["/battles/count","/count"], authenticate, (req, res) => {
 
         battles.count({}).then((count) => {
             res.send({
@@ -34,7 +34,7 @@ module.exports = function (app) {
     });
 
     //battles/list GET 
-    app.get("/battles/list", authenticate, (req, res) => {
+    app.get(["/battles/list","/list"], authenticate, (req, res) => {
 
 
         // db.getCollection('battles').aggregate(
@@ -59,7 +59,7 @@ module.exports = function (app) {
     });
 
     //battles/list GET 
-    app.get("/battles/search", authenticate, (req, res) => {
+    app.get(["/battles/search","/search"], authenticate, (req, res) => {
 
         var columnAlias = {
             "type": "battle_type"
@@ -111,7 +111,7 @@ module.exports = function (app) {
 
 
     //battles/stats GET 
-    app.get("/battles/stats", authenticate, (req, res) => {
+    app.get(["/battles/stats","/stats"], authenticate, (req, res) => {
 
         battles.aggregate(
             [
