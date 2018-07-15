@@ -9,7 +9,6 @@ var authenticate = function (req, res, next) {
             new Promise.reject();
         }
 
-        req.user = doc;
         req.token = token;
         next();
 

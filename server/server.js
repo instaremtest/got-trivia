@@ -21,7 +21,12 @@ app.get("/", (req, res) => {
     var msgArr = [];
     msgArr.push("Hello")
     msgArr.push("")
-    msgArr.push("User/Password : user_841@gmail.com/pass123")
+    msgArr.push("To login use")
+    msgArr.push("User/Password : user_401@gmail.com/pass123")
+    msgArr.push("OR")
+    msgArr.push("JWT_TOKEN : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YjRiMmMzZTFhZGVmMTA3MjliNjAxODIiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTMxNjUzOTU3fQ.5aEyK8x5R3bTTj1npcod4i4NMYo8IKGIco3sYATMJlk")
+
+
     msgArr.push("")
     msgArr.push("Following are the supported URIs")
 

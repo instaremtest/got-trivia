@@ -20,35 +20,22 @@ var UserSchema = new mongoose.Schema({
         required: true,
         type: String,
         minlength: 6,
-    },
-    tokens: [{
-        access: {
-            type: String,
-            required: true
-        },
-        token: {
-            type: String,
-            required: true
-        }
-    }]
+    }
 })
 
 UserSchema.methods.generateAuthToken = function () {
     var userObj = this;
     var access = "auth";
-    var token = jwt.sign({
-        _id: userObj._id.toHexString(),
-        access
-    }, process.env.JWT_SECRET_KEY).toString();
-
-    userObj.tokens.push({ access, token });
-
-    // return token;
-    return userObj.save().then(() => {
-        return token;
-    }).catch((e) => {
-        console.log(e)
-    })
+    var token;
+    return new Promise((resolve, reject) => {
+        token = jwt.sign({
+            _id: userObj._id.toHexString(),
+            access
+        }, process.env.JWT_SECRET_KEY
+        // , { expiresIn: 86400 }
+        ).toString();
+        resolve(token)
+    });
 
 };
 
@@ -67,10 +54,10 @@ UserSchema.statics.findByToken = function (token) {
         return Promise.reject();
     }
 
-    return userObj.findOne({
+    return Promise.resolve({
         _id: decoded._id,
-        "tokens.token": token,
-        "tokens.access": "auth"
+        "token": token,
+        "access": "auth"
     });
 
 }
